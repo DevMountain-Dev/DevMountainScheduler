@@ -1,18 +1,31 @@
 "use strict";
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {IndexRoute, browserHistory, Router, Route} from 'react-router';
-import App from './components/App.jsx';
+import {render} from 'react-dom';
+import {Router, Route, hashHistory} from 'react-router';
+import NavBar from './components/NavBar/NavBar.jsx';
+import CreateTemplate from './components/CreateTemplate/CreateTemplate.jsx'
+import Settings from './components/Settings/Settings.jsx'
 
 require('./resources/styles/style.less');
 require( 'bootstrap/dist/css/bootstrap.css');
 require('bootstrap/dist/js/bootstrap.min');
 
-ReactDOM.render((
-    <Router history={browserHistory}>
-        <Route path="/" component={App}>
-            <IndexRoute component={App}/>
-        </Route>
-    </Router>
-), document.getElementById('root'));
+class App extends React.Component{
+    render() {
+        return (
+            <div>
+                <Router history={hashHistory}>
+                    <Route component={NavBar}>
+                        <Route path="/" />
+                        <Route path="/CreateTemplate" component={CreateTemplate} />
+                        <Route path="/Settings" component={Settings.jsx}/>
+                    </Route>
+                </Router>
+            </div>
+
+        )
+    }
+}
+
+render(<App/>, document.getElementById('app'));
