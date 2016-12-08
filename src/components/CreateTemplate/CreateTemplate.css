@@ -1,0 +1,43 @@
+.calendarBox {
+  border: 2px solid black;
+  height: 12vw;
+  width: 12.286vw;
+  margin: 1vw;
+  /*margin-bottom: 2vw;*/
+  /*background: white;*/
+}
+.calendarSection {
+  display: flex;
+  flex-wrap: wrap;
+  display: flex;
+}
+
+.calendarContainer {
+  /*background: blue;*/
+}
+.inputSection {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #db3236;
+  height: 5vw;
+  font-family: sans-serif;
+  color: white;
+  align-items: center;
+  font-size: 30px;
+  padding: 1vw;
+}
+.inputSection div {
+  display: flex;
+  align-items: center;
+}
+.inputSection input {
+  font-size: 25px;
+}
+.inputSection button {
+  font-size: 25px;
+  color: white;
+  border: none;
+  background-color: #4885ed;
+  border-radius: 10px;
+}

@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack -d --watch",
     "build": "webpack -p",
-    "start": "webpack-dev-server -d --inline --hot"
+    "start": "webpack --watch & nodemon server.js"
   },
   "author": "",
   "license": "ISC",
