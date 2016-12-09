@@ -1,5 +1,5 @@
+"use strict";
 const webpack = require('webpack');
-const path    = require('path');
 const jQuery  = new webpack.ProvidePlugin({
     jQuery: 'jquery',
     $: 'jquery',
@@ -7,19 +7,28 @@ const jQuery  = new webpack.ProvidePlugin({
 });
 
 module.exports = {
-    entry: './src/index.jsx',
+    entry: [
+        'webpack/hot/dev-server',
+        'webpack-hot-middleware/client',
+        './src/index.js'
+    ],
     output: {
-        path: './public/',
+        path: '/',
+        publicPath: 'http://localhost:4000/public/',
         filename: 'bundle.js'
     },
-    devTool: 'eval-source-map',
-    plugins: [jQuery],
+    plugins: [
+        jQuery,
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin()
+    ],
     module: {
         loaders: [
             {
                 test: /\.jsx?/,
                 exclude: /(node_modules|build)/,
-                loader: 'babel'
+                loaders: ['react-hot', 'babel']
             },
             {
                 test: /\.css|\.less/,
@@ -40,8 +49,5 @@ module.exports = {
             }
         ]
     },
-    resolve: {
-        root: path.resolve(__dirname),
-        extensions: ["", '.js', '.jsx', '.css', '.scss', '.json', '.jpg', '.jpeg']
-    },
+    target: "web"
 };
