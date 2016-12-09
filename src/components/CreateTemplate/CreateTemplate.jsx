@@ -41,7 +41,19 @@ class CreateTemplate extends React.Component {
         this.setState({
             name: document.getElementById('name').value,
             length: document.getElementById('length').value,
-            activities:[["whatever","hi,","stuff"]]
+            activities:[[{
+                activity:"whatever",
+                startTime:230,
+                endTime:430
+            },{
+                activity:"hi,",
+                startTime:430,
+                endTime:500
+            },{
+                activity:"stuff",
+                startTime:600,
+                endTime:800
+            }]]
         });
         for (let i = 0; i < this.state.length; i++) {
             theBoxes.push((

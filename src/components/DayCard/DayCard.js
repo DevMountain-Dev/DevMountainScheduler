@@ -7,8 +7,13 @@ class DayCard extends React.Component {
         super(props);
         if (this.props.activities) {
             console.log('here');
-            this.state={activities :this.props.activities.map(activity => (<li>activity</li>))};
+            this.state = {
+                activities: this.props.activities.map(activity => (
+                    <li key={activity.startTime}>{activity.activity} : {activity.startTime}-{activity.endTime}</li>))
+            };
             console.log(this.state)
+        } else{
+            this.state ={};
         }
     }
 
@@ -16,11 +21,12 @@ class DayCard extends React.Component {
         if (this.props.activities) {
             this.setState({
                 activities: this.props.activities.map(activity => (
-                    <li>{activity.desc} : {activity.startTime}-{activity.endTime}</li>))
+                    <li key={activity.startTime}>{activity.activity} : {activity.startTime}-{activity.endTime}</li>))
             });
         }
     }
-    handleClick(){
+
+    handleClick() {
         this.props.cb(this.props.date)
     }
 
@@ -30,7 +36,7 @@ class DayCard extends React.Component {
             <div className=" calendarBox" style={style} onClick={this.handleClick.bind(this)}>
                 <h2>{this.props.date}</h2>
                 <ul>
-                    {this.activities}
+                    {this.state.activities}
                 </ul>
             </div>
         )
