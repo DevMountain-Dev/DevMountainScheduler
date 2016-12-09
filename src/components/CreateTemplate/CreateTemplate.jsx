@@ -1,7 +1,7 @@
 import React from 'react'
 // import Input from '../InputComp/InputComp.jsx'
 import './CreateTemplate.css'
-
+import DayCard from '../DayCard/DayCard'
 class CreateTemplate extends React.Component {
     constructor(props) {
         super(props);
@@ -13,12 +13,12 @@ class CreateTemplate extends React.Component {
 
         };
 
-        this.handleClick = this.handleClick.bind(this);
-        this.alertMe     = this.alertMe.bind(this);
+        // this.handleClick = this.handleClick.bind(this);
+        // this.alertMe     = this.alertMe.bind(this);
     }
 
-    alertMe(e) {
-        console.log(e.target);
+    alertMe(data) {
+        console.log(data);
     }
 
     componentDidUpdate() {
@@ -38,16 +38,19 @@ class CreateTemplate extends React.Component {
     handleClick() {
 
         const theBoxes = [];
+        this.setState({
+            name: document.getElementById('name').value,
+            length: document.getElementById('length').value,
+            activities:[["whatever","hi,","stuff"]]
+        });
         for (let i = 0; i < this.state.length; i++) {
             theBoxes.push((
-                    <div key={i} className="calendarBox" onClick={this.alertMe}>{i + 1}</div>
+                        <DayCard  weekend={false} date={i} activities={this.state.activities[i]} key={i} cb={this.alertMe.bind(this)}/>
                 )
             )
         }
 
         this.setState({
-            name: document.getElementById('name').value,
-            length: document.getElementById('length').value,
             boxes: theBoxes
         })
 
@@ -62,10 +65,10 @@ class CreateTemplate extends React.Component {
                     /></div>
                     <div>Length &nbsp;<input id="length"  placeholder="Enter length"
                     /></div>
-                    <button onClick={this.handleClick}>Create</button>
+                    <button onClick={this.handleClick.bind(this)}>Create</button>
                 </div>
                 <section className="calendarContainer">
-                    {this.state.boxes}
+                    <div className="calendarSection">{this.state.boxes}</div>
                 </section>
             </div>
         )
