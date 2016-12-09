@@ -45,7 +45,11 @@ class CreateTemplate extends React.Component {
         });
         for (let i = 0; i < this.state.length; i++) {
             theBoxes.push((
-                        <DayCard  weekend={false} date={i} activities={this.state.activities[i]} key={i} cb={this.alertMe.bind(this)}/>
+                        <DayCard  weekend={false}
+                                  date={i}
+                                  activities={this.state.activities[i]}
+                                  key={i}
+                                  cb={this.alertMe.bind(this)}/>
                 )
             )
         }

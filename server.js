@@ -11,7 +11,6 @@ const app = express();
 // app.use(cors(corsOptions))
 switch (process.env.npm_lifecycle_event) {
     case 'build':
-
         break;
     case 'start':
         const webpackDevMiddleware = require('webpack-dev-middleware');

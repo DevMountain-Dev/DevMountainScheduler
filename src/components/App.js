@@ -1,11 +1,12 @@
 import React from 'react';
+import NavBar from './NavBar/NavBar'
 
 class App extends React.Component {
     render() {
         return (
             <div>
-                its workinghi
-                <p>whatever</p>
+                <NavBar/>
+                {this.props.children}
             </div>
         )
     }
