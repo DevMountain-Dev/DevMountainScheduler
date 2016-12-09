@@ -22,7 +22,7 @@ class DayCard extends React.Component {
     }
     handleClick(){
         this.props.cb(this.props.date)
-    }
+    } 
 
     render() {
         let style = this.props.weekend ? {} : {opacity: ".6"};

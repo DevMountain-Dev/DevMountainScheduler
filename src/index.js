@@ -11,18 +11,16 @@ require('./css/reset.css');
 require('bootstrap/dist/css/bootstrap.css');
 require('bootstrap/dist/js/bootstrap.min');
 
-class App extends React.Component{
+class App extends React.Component {
     render() {
         return (
-            <div>
-                <Router history={hashHistory}>
-                    <Route component={NavBar}>
-                        <Route path="/" />
-                        <Route path="/CreateTemplate" component={CreateTemplate} />
-                        <Route path="/Settings" component={Settings.jsx}/>
-                    </Route>
-                </Router>
-            </div>
+            <Router history={hashHistory}>
+                <Route component={NavBar}>
+                    <Route path="/"/>
+                    <Route path="/CreateTemplate" component={CreateTemplate}/>
+                    <Route path="/Settings" component={Settings.jsx}/>
+                </Route>
+            </Router>
 
         )
     }
