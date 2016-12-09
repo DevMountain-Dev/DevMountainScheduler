@@ -11,10 +11,6 @@ require('./css/reset.css');
 require('bootstrap/dist/css/bootstrap.css');
 require('bootstrap/dist/js/bootstrap.min');
 
-class App {
-
-}
-
 render((
     <Router history={browserHistory}>
         <Route path="/" component={App}>
