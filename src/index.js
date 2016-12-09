@@ -4,11 +4,11 @@ import React from 'react';
 import {render} from 'react-dom';
 import {Router, Route, hashHistory} from 'react-router';
 import NavBar from './components/NavBar/NavBar.jsx';
-import CreateTemplate from './components/CreateTemplate/CreateTemplate.jsx'
-import Settings from './components/Settings/Settings.jsx'
+import CreateTemplate from './components/CreateTemplate/CreateTemplate.jsx';
+import Settings from './components/Settings/Settings.jsx';
 
-require('./resources/styles/style.less');
-require( 'bootstrap/dist/css/bootstrap.css');
+require('./css/reset.css');
+require('bootstrap/dist/css/bootstrap.css');
 require('bootstrap/dist/js/bootstrap.min');
 
 class App extends React.Component{

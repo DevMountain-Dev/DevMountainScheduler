@@ -9,7 +9,6 @@
 .calendarSection {
   display: flex;
   flex-wrap: wrap;
-  display: flex;
 }
 
 .calendarContainer {
@@ -22,7 +21,7 @@
   background-color: #db3236;
   height: 5vw;
   font-family: sans-serif;
-  color: white;
+  /*color: white;*/
   align-items: center;
   font-size: 30px;
   padding: 1vw;
