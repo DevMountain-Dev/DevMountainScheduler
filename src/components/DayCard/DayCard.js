@@ -17,6 +17,8 @@ class DayCard extends React.Component {
         }
     }
 
+
+
     componentWillReceiveProps() {
         if (this.props.activities) {
             this.setState({

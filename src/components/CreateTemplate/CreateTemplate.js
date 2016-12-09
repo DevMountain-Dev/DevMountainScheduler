@@ -12,9 +12,6 @@ class CreateTemplate extends React.Component {
             days: []
 
         };
-
-        // this.handleClick = this.handleClick.bind(this);
-        // this.alertMe     = this.alertMe.bind(this);
     }
 
     alertMe(data) {
@@ -32,7 +29,6 @@ class CreateTemplate extends React.Component {
             [key]: event.target.value,
             submitClicked: false
         })
-
     }
 
     handleClick() {
@@ -41,35 +37,32 @@ class CreateTemplate extends React.Component {
         this.setState({
             name: document.getElementById('name').value,
             length: document.getElementById('length').value,
-            activities:[[{
-                activity:"whatever",
-                startTime:230,
-                endTime:430
-            },{
-                activity:"hi,",
-                startTime:430,
-                endTime:500
-            },{
-                activity:"stuff",
-                startTime:600,
-                endTime:800
+            activities: [[{
+                activity: "whatever",
+                startTime: 230,
+                endTime: 430
+            }, {
+                activity: "hi,",
+                startTime: 430,
+                endTime: 500
+            }, {
+                activity: "stuff",
+                startTime: 600,
+                endTime: 800
             }]]
         });
         for (let i = 0; i < this.state.length; i++) {
             theBoxes.push((
-                        <DayCard  weekend={false}
-                                  date={i}
-                                  activities={this.state.activities[i]}
-                                  key={i}
-                                  cb={this.alertMe.bind(this)}/>
+                    <DayCard weekend={false}
+                             date={i}
+                             activities={this.state.activities[i]}
+                             key={i}
+                             cb={this.alertMe.bind(this)}/>
                 )
             )
         }
-
-        this.setState({
-            boxes: theBoxes
-        })
-
+        console.log('here')
+        this.setState({boxes: theBoxes}, this.forceUpdate);
     }
 
     render() {
@@ -77,9 +70,9 @@ class CreateTemplate extends React.Component {
         return (
             <div>
                 <div className="inputSection">
-                    <div>Template Name &nbsp;<input id="name"  placeholder="Enter name"
+                    <div>Template Name &nbsp;<input id="name" placeholder="Enter name"
                     /></div>
-                    <div>Length &nbsp;<input id="length"  placeholder="Enter length"
+                    <div>Length &nbsp;<input id="length" placeholder="Enter length"
                     /></div>
                     <button onClick={this.handleClick.bind(this)}>Create</button>
                 </div>
@@ -89,7 +82,5 @@ class CreateTemplate extends React.Component {
             </div>
         )
     }
-
-
 }
 export default CreateTemplate
