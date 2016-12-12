@@ -13,8 +13,8 @@ class LoadTemplate extends React.Component{
 
     render(){
         return(
-            <div>
-                <div>
+            <div className="inputSection">
+                <div >
                     Start Date &nbsp;<input id="start" placeholder="Enter start date"/>
                 </div>
                 <div>
