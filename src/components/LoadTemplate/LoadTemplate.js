@@ -57,12 +57,12 @@ class LoadTemplate extends React.Component {
                             {this.renderTemplates()}
                         </select>
                     </div>
-                    <div >
-                        Gmail &nbsp;<input type="email"  className="form-control" id="gmail" placeholder="Gmail Account"/>
-                    </div>
-                    <div>
-                        Password &nbsp;<input type="password" className="form-control" id="pass" placeholder="Password"/>
-                    </div>
+                    {/*<div >*/}
+                        {/*Gmail &nbsp;<input type="email"  className="form-control" id="gmail" placeholder="Gmail Account"/>*/}
+                    {/*</div>*/}
+                    {/*<div>*/}
+                        {/*Password &nbsp;<input type="password" className="form-control" id="pass" placeholder="Password"/>*/}
+                    {/*</div>*/}
                     <button className="btn" onClick={this.sendToCalendar}>Send to Google Calendar</button>
                 </div>
             </div>

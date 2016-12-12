@@ -15,7 +15,7 @@ class NavBar extends React.Component {
             <div className="navbar navbar-default">
                 <ul style={styles} className="nav navbar-nav">
                     <li>
-                        <Link to="/CreateTemplate">
+                        <Link to="/">
                             Create Template
                         </Link>
                     </li>
