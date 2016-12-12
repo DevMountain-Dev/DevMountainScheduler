@@ -1,7 +1,7 @@
 `use strict`;
 
 import React from 'react';
-
+import './DayCard.css'
 class DayCard extends React.Component {
     constructor(props) {
         super(props);
@@ -30,13 +30,14 @@ class DayCard extends React.Component {
 
     handleClick() {
         this.props.cb(this.props.date)
+        this.props.popup(this.props.date)
     }
 
     render() {
-        let style = this.props.weekend ? {} : {opacity: ".6"};
+        let style = this.props.weekend ? {opacity: ".6", backgroundColor: 'lightgrey'} : {};
         return (
             <div className=" calendarBox" style={style} onClick={this.handleClick.bind(this)}>
-                <h2>{this.props.date}</h2>
+                <p>{this.props.date}</p>
                 <ul>
                     {this.state.activities}
                 </ul>

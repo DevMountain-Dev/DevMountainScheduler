@@ -1,11 +1,4 @@
-.calendarBox {
-  border: 2px solid black;
-  height: 12vw;
-  width: 12.286vw;
-  margin: 1vw;
-  /*margin-bottom: 2vw;*/
-  /*background: white;*/
-}
+
 .calendarSection {
   display: flex;
   flex-wrap: wrap;
@@ -39,4 +32,17 @@
   border: none;
   background-color: #4885ed;
   border-radius: 10px;
+}
+.popup {
+  height: 70vh;
+  width: 50vw;
+  position: fixed;
+  margin-left: 25vw;
+  border: 2px solid black;
+  background-color: white;
+  margin-top: 47vh;
+  z-index: 1;
+  padding: 2vw;
+  display: flex;
+  flex-direction: column;
 }

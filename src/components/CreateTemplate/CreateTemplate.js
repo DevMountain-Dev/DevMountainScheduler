@@ -2,6 +2,7 @@ import React from 'react'
 // import Input from '../InputComp/InputComp.jsx'
 import './CreateTemplate.css'
 import DayCard from '../DayCard/DayCard'
+import InputComp from '../InputComp/InputComp'
 class CreateTemplate extends React.Component {
     constructor(props) {
         super(props);
@@ -9,18 +10,15 @@ class CreateTemplate extends React.Component {
             name: '',
             length: '',
             submitClicked: false,
-            days: []
+            showPopUp: false,
+            dayClicked: ''
 
         };
+        this.createTemplate = this.createTemplate.bind(this)
     }
 
     alertMe(data) {
         console.log(data);
-    }
-
-    componentDidUpdate() {
-
-
     }
 
 
@@ -30,39 +28,57 @@ class CreateTemplate extends React.Component {
             submitClicked: false
         })
     }
+    popup(day){
+      this.setState({
+        showPopUp: true,
+        dayClicked: day
+      })
+    }
+    closePopup(){
+      this.setState({
+        showPopUp: false
+      })
+    }
 
-    handleClick() {
 
-        const theBoxes = [];
-        this.setState({
-            name: document.getElementById('name').value,
-            length: document.getElementById('length').value,
-            activities: [[{
-                activity: "whatever",
-                startTime: 230,
-                endTime: 430
-            }, {
-                activity: "hi,",
-                startTime: 430,
-                endTime: 500
-            }, {
-                activity: "stuff",
-                startTime: 600,
-                endTime: 800
-            }]]
-        });
+
+    createTemplate(){
+      const theBoxes = [];
+
+      this.setState({
+          name: document.getElementById('name').value,
+          length: document.getElementById('length').value,
+          activities: []
+      }, function(){
         for (let i = 0; i < this.state.length; i++) {
+          var weekendDays = [6, 7, 13, 14, 20, 21, 27, 28, 34, 35, 41, 42, 48, 49, 55, 56, 62, 63, 69, 70, 76, 77, 83, 84, 90, 91]
+          var weekend = (weekendDays.indexOf(i + 1) !== -1 ? true : false)
             theBoxes.push((
-                    <DayCard weekend={false}
-                             date={i}
+                    <DayCard weekend={weekend}
+                             date={i + 1}
                              activities={this.state.activities[i]}
                              key={i}
-                             cb={this.alertMe.bind(this)}/>
+                             cb={this.alertMe.bind(this)}
+                             popup={this.popup.bind(this)}/>
                 )
             )
         }
-        console.log('here')
-        this.setState({boxes: theBoxes}, this.forceUpdate);
+
+        this.setState({boxes: theBoxes});
+      });
+
+    }
+
+
+
+    handleClick() {
+      this.createTemplate()
+    }
+
+    handleEnter(e) {
+      if(e.keyCode === 13){
+        this.createTemplate()
+      }
     }
 
     render() {
@@ -72,13 +88,15 @@ class CreateTemplate extends React.Component {
                 <div className="inputSection">
                     <div>Template Name &nbsp;<input id="name" placeholder="Enter name"
                     /></div>
-                    <div>Length &nbsp;<input id="length" placeholder="Enter length"
+                    <div>Length &nbsp;<input id="length" placeholder="Enter length" onKeyUp={this.handleEnter.bind(this)}
                     /></div>
                     <button onClick={this.handleClick.bind(this)}>Create</button>
+                    {this.state.showPopUp ? <InputComp dayClicked={this.state.dayClicked}closePopup={this.closePopup.bind(this)}className="popup" /> : null}
                 </div>
                 <section className="calendarContainer">
                     <div className="calendarSection">{this.state.boxes}</div>
                 </section>
+
             </div>
         )
     }
