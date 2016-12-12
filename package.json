@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack -d --watch",
-    "build": "forever ",
+    "build": "webpack",
     "start": "nodemon server.js"
   },
   "author": "",
