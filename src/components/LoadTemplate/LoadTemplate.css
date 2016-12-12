@@ -1,26 +1,9 @@
-.inputSection {
+#loadTemplate{
+    width:100%;
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-    background-color: #db3236;
-    height: 5vw;
-    font-family: sans-serif;
-    /*color: white;*/
-    align-items: center;
-    font-size: 30px;
-    padding: 1vw;
+    justify-content: center;
 }
-.inputSection div {
-    display: flex;
-    align-items: center;
-}
-.inputSection input {
-    font-size: 25px;
-}
-.inputSection button {
-    font-size: 25px;
-    color: white;
-    border: none;
-    background-color: #4885ed;
-    border-radius: 10px;
+
+.loadForm{
+    width:30%
 }
