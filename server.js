@@ -23,7 +23,7 @@ switch (process.env.npm_lifecycle_event) {
         app.use(webpackHotMiddleware(compiler, {
             log: console.log
         }));
-        app.get('/', (req, res, next) => res.sendFile(path.join(__dirname + '/src/index.html')));
+        app.get('*', (req, res, next) => res.sendFile(path.join(__dirname + '/src/index.html')));
         break;
     default:
         app.use(express.static(__dirname + '/public'));
