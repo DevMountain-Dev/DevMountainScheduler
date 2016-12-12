@@ -12,19 +12,25 @@ const styles = {
 class NavBar extends React.Component {
     render() {
         return (
-            <div>
-                <ul style={styles}>
-                    <Link to="/CreateTemplate">
-                        <li>Create Template</li>
-                    </Link>
-                    <Link to="/Settings">
-                        <li>Settings</li>
-                    </Link>
-                    <Link to="/loadtemplate">
-                        <li>Load Template</li>
-                    </Link>
+            <div className="navbar navbar-default">
+                <ul style={styles} className="nav navbar-nav">
+                    <li>
+                        <Link to="/">
+                            Create Template
+                        </Link>
+                    </li>
+
+                    <li>
+                        <Link to="/Settings">
+                            Settings
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/loadtemplate">
+                            Load Template
+                        </Link>
+                    </li>
                 </ul>
-                {this.props.children}
             </div>
         )
     }
