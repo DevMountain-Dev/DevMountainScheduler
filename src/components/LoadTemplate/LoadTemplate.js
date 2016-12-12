@@ -1,13 +1,14 @@
 "use strict";
 
 import './LoadTemplate.css';
-import react from 'react';
+import React from 'react';
 
-class LoadTemplate extends react.Component{
+class LoadTemplate extends React.Component{
 
     constructor(props){
         super(props);
         //get stuff from db
+        this.state = {};
     }
 
     render(){
