@@ -90,15 +90,17 @@ class CreateTemplate extends React.Component {
     }
     addDayData(dayData){
       console.log(dayData)
-      let temp = this.state.activities.slice();
-      temp[dayData.day] = dayData.data;
-      console.log(temp);
+      // let temp = this.state.activities.slice();
+      // temp[dayData.day] = dayData.data;
+      // console.log(temp);
       // this.state.boxes.forEach(function(val, i){
       //   if(val.date === dayData.day){
       //      val.props.activities.activities.push(dayData.data)
       //   }
       // })
-
+      // this.state.boxes.forEach(function(val){
+      //   val.props.date
+      // })
 
       console.log(this.state.boxes);
 
