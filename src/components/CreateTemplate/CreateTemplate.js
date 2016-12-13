@@ -11,9 +11,12 @@ class CreateTemplate extends React.Component {
             length: '',
             submitClicked: false,
             showPopUp: false,
-            dayClicked: ''
+            dayClicked: '',
+            dayData: ''
 
         };
+        console.log(this.state)
+
         this.createTemplate = this.createTemplate.bind(this)
     }
 
@@ -39,6 +42,11 @@ class CreateTemplate extends React.Component {
         showPopUp: false
       })
     }
+    // submitDayData(dataObj){
+    //   this.setState({
+    //
+    //   })
+    // }
 
 
 
@@ -48,7 +56,7 @@ class CreateTemplate extends React.Component {
       this.setState({
           name: document.getElementById('name').value,
           length: document.getElementById('length').value,
-          activities: []
+          activities: Array(this.state.length).fill({id: '', activities: []})
       }, function(){
         for (let i = 0; i < this.state.length; i++) {
           var weekendDays = [6, 7, 13, 14, 20, 21, 27, 28, 34, 35, 41, 42, 48, 49, 55, 56, 62, 63, 69, 70, 76, 77, 83, 84, 90, 91]
@@ -57,7 +65,7 @@ class CreateTemplate extends React.Component {
                     <DayCard weekend={weekend}
                              date={i + 1}
                              activities={this.state.activities[i]}
-                             key={i}
+                             key={i + 1}
                              cb={this.alertMe.bind(this)}
                              popup={this.popup.bind(this)}/>
                 )
@@ -80,6 +88,28 @@ class CreateTemplate extends React.Component {
         this.createTemplate()
       }
     }
+    addDayData(dayData){
+      console.log(dayData)
+      // let temp = this.state.activities.slice();
+      // temp[dayData.day] = dayData.data;
+      // console.log(temp);
+      // this.state.boxes.forEach(function(val, i){
+      //   if(val.date === dayData.day){
+      //      val.props.activities.activities.push(dayData.data)
+      //   }
+      // })
+      // this.state.boxes.forEach(function(val){
+      //   val.props.date
+      // })
+
+      console.log(this.state.boxes);
+
+      // this.state.activities[dayData.day].id = dayData.day+1;
+
+      // this.setState({
+      //   activities: this.state.activities
+      // })
+    }
 
     render() {
 
@@ -91,7 +121,7 @@ class CreateTemplate extends React.Component {
                     <div>Length &nbsp;<input id="length" placeholder="Enter length" onKeyUp={this.handleEnter.bind(this)}
                     /></div>
                     <button onClick={this.handleClick.bind(this)}>Create</button>
-                    {this.state.showPopUp ? <InputComp dayClicked={this.state.dayClicked}closePopup={this.closePopup.bind(this)}className="popup" /> : null}
+                    {this.state.showPopUp ? <InputComp dayClicked={this.state.dayClicked}closePopup={this.closePopup.bind(this)} addDayData={this.addDayData.bind(this)}className="popup" /> : null}
                 </div>
                 <section className="calendarContainer">
                     <div className="calendarSection">{this.state.boxes}</div>
