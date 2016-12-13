@@ -9,8 +9,8 @@ class CreateTemplate extends React.Component {
             name: '',
             length: '',
             submitClicked: false,
-            days: []
-
+            days: [],
+            activities:[]
         };
     }
 
@@ -61,7 +61,6 @@ class CreateTemplate extends React.Component {
                 )
             )
         }
-        console.log('here')
         this.setState({boxes: theBoxes}, this.forceUpdate);
     }
 
