@@ -6,12 +6,12 @@ class DayCard extends React.Component {
     constructor(props) {
         super(props);
         if (this.props.activities) {
-            console.log('here');
+            // console.log('here');
             this.state = {
-                activities: this.props.activities.activities.map(activity => (
+                activities: this.props.activities.map(activity => (
                     <li key={activity.startTime}>{activity.activity} : {activity.startTime}-{activity.endTime}</li>))
             };
-            console.log(this.state)
+            // console.log(this.state)
         } else{
             this.state ={};
         }
@@ -19,18 +19,19 @@ class DayCard extends React.Component {
 
 
 
-    componentWillReceiveProps() {
-        if (this.props.activities) {
-            this.setState({
-                activities: this.props.activities.map(activity => (
-                    <li key={activity.startTime}>{activity.activity} : {activity.startTime}-{activity.endTime}</li>))
-            });
-        }
-    }
+    // componentWillUpdate(nextProps, nextState) {
+    //     console.log(nextProps,nextState)
+    //     if (nextProps.activities) {
+    //         this.setState({
+    //             activities: nextProps.activities.map(activity => (
+    //                 <li key={activity.startTime}>{activity.activity} : {activity.startTime}-{activity.endTime}</li>))
+    //         });
+    //     }
+    // }
 
     handleClick() {
-        this.props.cb(this.props.date)
-        this.props.popup(this.props.date)
+        this.props.cb(this.props.date);
+        this.props.popup(this.props.date);
     }
 
     render() {

@@ -18,7 +18,7 @@ class CreateTemplate extends React.Component {
 
 
         };
-        console.log(this.state)
+        // console.log(this.state)
 
         this.createTemplate = this.createTemplate.bind(this)
     }
@@ -48,24 +48,22 @@ class CreateTemplate extends React.Component {
         })
     }
 
-    // submitDayData(dataObj){
-    //   this.setState({
-    //
-    //   })
-    // }
+    submitDayData(dataObj) {
+        console.log(dataobj)
+    }
 
 
     createTemplate() {
         let boxes      = [];
         let name       = document.getElementById('name').value;
         let length     = document.getElementById('length').value;
-        let activities = new Array(length).fill([]);
+        let activities = new Array(Number(length)).fill([]);
         this.setState({
             name,
             length,
             activities
         }, function () {
-            for (let i = 0; i < this.state.length; i++) {
+            for (let i = 0; i < length; i++) {
                 let weekendDays = [6, 7, 13, 14, 20, 21, 27, 28, 34, 35, 41, 42, 48, 49, 55, 56, 62, 63, 69, 70, 76, 77, 83, 84, 90, 91];
                 let weekend     = (weekendDays.indexOf(i + 1) !== -1);
                 boxes.push((
@@ -95,7 +93,14 @@ class CreateTemplate extends React.Component {
     }
 
     addDayData(dayData) {
-        console.log(dayData)
+        console.log(dayData);
+
+        let arr2          = [...this.state.activities];
+        console.log(arr2[dayData.day]);
+        arr2[Number(dayData.day)].push(dayData.data);
+        this.setState({activities: arr2},()=>{
+            console.log(this.state.activities)
+        });
         // let temp = this.state.activities.slice();
         // temp[dayData.day] = dayData.data;
         // console.log(temp);
@@ -108,7 +113,7 @@ class CreateTemplate extends React.Component {
         //   val.props.date
         // })
 
-        console.log(this.state.boxes);
+        // console.log(this.state.boxes);
 
         // this.state.activities[dayData.day].id = dayData.day+1;
 
