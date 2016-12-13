@@ -19,15 +19,15 @@ class DayCard extends React.Component {
 
 
 
-    // componentWillUpdate(nextProps, nextState) {
-    //     console.log(nextProps,nextState)
-    //     if (nextProps.activities) {
-    //         this.setState({
-    //             activities: nextProps.activities.map(activity => (
-    //                 <li key={activity.startTime}>{activity.activity} : {activity.startTime}-{activity.endTime}</li>))
-    //         });
-    //     }
-    // }
+    componentWillReceiveProps() {
+        console.log(this.props.activities);
+        if (this.props.activities) {
+            this.setState({
+                activities: this.props.activities.map(activity => (
+                    <li key={activity.startTime}>{activity.activity} : {activity.startTime}-{activity.endTime}</li>))
+            });
+        }
+    }
 
     handleClick() {
         this.props.cb(this.props.date);
