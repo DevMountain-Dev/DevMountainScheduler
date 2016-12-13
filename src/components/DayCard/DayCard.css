@@ -1,0 +1,9 @@
+.calendarBox {
+  border: 2px solid black;
+  height: 12vw;
+  width: 12.286vw;
+  margin: 1vw;
+  background: white;
+  font-size: 15px;
+  padding: 5px;
+}

@@ -1,0 +1,13 @@
+.xRow {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  /*margin-top: -59vh;*/
+  align-items: center;
+}
+.x {
+  font-size: 50px;
+}
+.x:hover {
+  cursor: pointer;
+}

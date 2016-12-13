@@ -2,25 +2,26 @@ import React from 'react'
 // import Input from '../InputComp/InputComp.jsx'
 import './CreateTemplate.css'
 import DayCard from '../DayCard/DayCard'
+import InputComp from '../InputComp/InputComp'
 class CreateTemplate extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
+        this.state          = {
             name: '',
             length: '',
             submitClicked: false,
             days: [],
-            activities:[]
+            activities: [],
+            showPopUp: false,
+            dayClicked: ''
+
+
         };
+        this.createTemplate = this.createTemplate.bind(this)
     }
 
     alertMe(data) {
         console.log(data);
-    }
-
-    componentDidUpdate() {
-
-
     }
 
 
@@ -31,28 +32,63 @@ class CreateTemplate extends React.Component {
         })
     }
 
-    handleClick() {
+    popup(day) {
+        this.setState({
+            showPopUp: true,
+            dayClicked: day
+        })
+    }
 
-        let theBoxes = [];
-        let name = document.getElementById('name').value;
-        let length = document.getElementById('length').value;
+    closePopup() {
+        this.setState({
+            showPopUp: false
+        })
+    }
+
+
+    createTemplate() {
+        let theBoxes   = [];
+        let name       = document.getElementById('name').value;
+        let length     = document.getElementById('length').value;
         let activities = new Array(length).fill([]);
         this.setState({
             name,
             length,
             activities
         });
-        for (let i = 0; i < this.state.length; i++) {
-            theBoxes.push((
-                    <DayCard weekend={false}
-                             date={i}
-                             activities={this.state.activities[i]}
-                             key={i}
-                             cb={this.alertMe.bind(this)}/>
+
+        this.setState({
+            name: document.getElementById('name').value,
+            length: document.getElementById('length').value,
+            activities: []
+        }, function () {
+            for (let i = 0; i < this.state.length; i++) {
+                var weekendDays = [6, 7, 13, 14, 20, 21, 27, 28, 34, 35, 41, 42, 48, 49, 55, 56, 62, 63, 69, 70, 76, 77, 83, 84, 90, 91]
+                var weekend     = (weekendDays.indexOf(i + 1) !== -1 ? true : false)
+                theBoxes.push((
+                        <DayCard weekend={weekend}
+                                 date={i + 1}
+                                 activities={this.state.activities[i]}
+                                 key={i}
+                                 cb={this.alertMe.bind(this)}
+                                 popup={this.popup.bind(this)}/>
+                    )
                 )
-            )
+            }
+            this.setState({boxes: theBoxes});
+        });
+
+    }
+
+
+    handleClick() {
+        this.createTemplate()
+    }
+
+    handleEnter(e) {
+        if (e.keyCode === 13) {
+            this.createTemplate()
         }
-        this.setState({boxes: theBoxes}, this.forceUpdate);
     }
 
     render() {
@@ -63,12 +99,17 @@ class CreateTemplate extends React.Component {
                     <div>Template Name &nbsp;<input id="name" placeholder="Enter name"
                     /></div>
                     <div>Length &nbsp;<input id="length" placeholder="Enter length"
+                                             onKeyUp={this.handleEnter.bind(this)}
                     /></div>
                     <button onClick={this.handleClick.bind(this)}>Create</button>
+                    {this.state.showPopUp ?
+                        <InputComp dayClicked={this.state.dayClicked} closePopup={this.closePopup.bind(this)}
+                                   className="popup"/> : null}
                 </div>
                 <section className="calendarContainer">
                     <div className="calendarSection">{this.state.boxes}</div>
                 </section>
+
             </div>
         )
     }
