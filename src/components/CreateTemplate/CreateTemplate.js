@@ -25,12 +25,12 @@ class CreateTemplate extends React.Component {
     }
 
 
-    onChange(key, event) {
-        this.setState({
-            [key]: event.target.value,
-            submitClicked: false
-        })
-    }
+    // onChange(key, event) {
+    //     this.setState({
+    //         [key]: event.target.value,
+    //         submitClicked: false
+    //     })
+    // }
 
     popup(day) {
         this.setState({
@@ -47,7 +47,7 @@ class CreateTemplate extends React.Component {
 
 
     createTemplate() {
-        let theBoxes   = [];
+        let boxes   = [];
         let name       = document.getElementById('name').value;
         let length     = document.getElementById('length').value;
         let activities = new Array(length).fill([]);
@@ -55,17 +55,11 @@ class CreateTemplate extends React.Component {
             name,
             length,
             activities
-        });
-
-        this.setState({
-            name: document.getElementById('name').value,
-            length: document.getElementById('length').value,
-            activities: []
         }, function () {
             for (let i = 0; i < this.state.length; i++) {
-                var weekendDays = [6, 7, 13, 14, 20, 21, 27, 28, 34, 35, 41, 42, 48, 49, 55, 56, 62, 63, 69, 70, 76, 77, 83, 84, 90, 91]
-                var weekend     = (weekendDays.indexOf(i + 1) !== -1 ? true : false)
-                theBoxes.push((
+                let weekendDays = [6, 7, 13, 14, 20, 21, 27, 28, 34, 35, 41, 42, 48, 49, 55, 56, 62, 63, 69, 70, 76, 77, 83, 84, 90, 91];
+                let weekend     = (weekendDays.indexOf(i + 1) !== -1);
+                boxes.push((
                         <DayCard weekend={weekend}
                                  date={i + 1}
                                  activities={this.state.activities[i]}
@@ -75,7 +69,7 @@ class CreateTemplate extends React.Component {
                     )
                 )
             }
-            this.setState({boxes: theBoxes});
+            this.setState({boxes});
         });
 
     }
