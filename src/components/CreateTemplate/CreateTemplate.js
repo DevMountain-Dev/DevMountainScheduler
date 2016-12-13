@@ -10,12 +10,15 @@ class CreateTemplate extends React.Component {
             name: '',
             length: '',
             submitClicked: false,
+            days: [],
+            activities: [],
             showPopUp: false,
             dayClicked: '',
             dayData: ''
 
+
         };
-        console.log(this.state)
+        // console.log(this.state)
 
         this.createTemplate = this.createTemplate.bind(this)
     }
@@ -25,90 +28,98 @@ class CreateTemplate extends React.Component {
     }
 
 
-    onChange(key, event) {
-        this.setState({
-            [key]: event.target.value,
-            submitClicked: false
-        })
-    }
-    popup(day){
-      this.setState({
-        showPopUp: true,
-        dayClicked: day
-      })
-    }
-    closePopup(){
-      this.setState({
-        showPopUp: false
-      })
-    }
-    // submitDayData(dataObj){
-    //   this.setState({
-    //
-    //   })
+    // onChange(key, event) {
+    //     this.setState({
+    //         [key]: event.target.value,
+    //         submitClicked: false
+    //     })
     // }
 
-
-
-    createTemplate(){
-      const theBoxes = [];
-
-      this.setState({
-          name: document.getElementById('name').value,
-          length: document.getElementById('length').value,
-          activities: Array(this.state.length).fill({id: '', activities: []})
-      }, function(){
-        for (let i = 0; i < this.state.length; i++) {
-          var weekendDays = [6, 7, 13, 14, 20, 21, 27, 28, 34, 35, 41, 42, 48, 49, 55, 56, 62, 63, 69, 70, 76, 77, 83, 84, 90, 91]
-          var weekend = (weekendDays.indexOf(i + 1) !== -1 ? true : false)
-            theBoxes.push((
-                    <DayCard weekend={weekend}
-                             date={i + 1}
-                             activities={this.state.activities[i]}
-                             key={i + 1}
-                             cb={this.alertMe.bind(this)}
-                             popup={this.popup.bind(this)}/>
-                )
-            )
-        }
-
-        this.setState({boxes: theBoxes});
-      });
-
+    popup(day) {
+        this.setState({
+            showPopUp: true,
+            dayClicked: day
+        })
     }
 
+    closePopup() {
+        this.setState({
+            showPopUp: false
+        })
+    }
+
+    submitDayData(dataObj) {
+        console.log(dataobj)
+    }
+
+
+    createTemplate() {
+        let boxes      = [];
+        let name       = document.getElementById('name').value;
+        let length     = document.getElementById('length').value;
+        let activities = new Array(Number(length)).fill([]);
+        this.setState({
+            name,
+            length,
+            activities
+        }, function () {
+            for (let i = 0; i < length; i++) {
+                let weekendDays = [6, 7, 13, 14, 20, 21, 27, 28, 34, 35, 41, 42, 48, 49, 55, 56, 62, 63, 69, 70, 76, 77, 83, 84, 90, 91];
+                let weekend     = (weekendDays.indexOf(i + 1) !== -1);
+                boxes.push((
+                        <DayCard weekend={weekend}
+                                 date={i + 1}
+                                 activities={this.state.activities[i]}
+                                 key={i}
+                                 cb={this.alertMe.bind(this)}
+                                 popup={this.popup.bind(this)}/>
+                    )
+                )
+            }
+            this.setState({boxes});
+        });
+
+    }
 
 
     handleClick() {
-      this.createTemplate()
+        this.createTemplate()
     }
 
     handleEnter(e) {
-      if(e.keyCode === 13){
-        this.createTemplate()
-      }
+        if (e.keyCode === 13) {
+            this.createTemplate()
+        }
     }
-    addDayData(dayData){
-      console.log(dayData)
-      // let temp = this.state.activities.slice();
-      // temp[dayData.day] = dayData.data;
-      // console.log(temp);
-      // this.state.boxes.forEach(function(val, i){
-      //   if(val.date === dayData.day){
-      //      val.props.activities.activities.push(dayData.data)
-      //   }
-      // })
-      // this.state.boxes.forEach(function(val){
-      //   val.props.date
-      // })
 
-      console.log(this.state.boxes);
+    addDayData(dayData) {
+        console.log(dayData);
 
-      // this.state.activities[dayData.day].id = dayData.day+1;
+        let arr2          = [...this.state.activities];
+        console.log(arr2[dayData.day]);
+        arr2[Number(dayData.day)].push(dayData.data);
+        this.setState({activities: arr2},()=>{
+            console.log(this.state.activities)
+        });
+        // let temp = this.state.activities.slice();
+        // temp[dayData.day] = dayData.data;
+        // console.log(temp);
+        // this.state.boxes.forEach(function(val, i){
+        //   if(val.date === dayData.day){
+        //      val.props.activities.activities.push(dayData.data)
+        //   }
+        // })
+        // this.state.boxes.forEach(function(val){
+        //   val.props.date
+        // })
 
-      // this.setState({
-      //   activities: this.state.activities
-      // })
+        // console.log(this.state.boxes);
+
+        // this.state.activities[dayData.day].id = dayData.day+1;
+
+        // this.setState({
+        //   activities: this.state.activities
+        // })
     }
 
     render() {
@@ -118,10 +129,14 @@ class CreateTemplate extends React.Component {
                 <div className="inputSection">
                     <div>Template Name &nbsp;<input id="name" placeholder="Enter name"
                     /></div>
-                    <div>Length &nbsp;<input id="length" placeholder="Enter length" onKeyUp={this.handleEnter.bind(this)}
+                    <div>Length &nbsp;<input id="length" placeholder="Enter length"
+                                             onKeyUp={this.handleEnter.bind(this)}
                     /></div>
                     <button onClick={this.handleClick.bind(this)}>Create</button>
-                    {this.state.showPopUp ? <InputComp dayClicked={this.state.dayClicked}closePopup={this.closePopup.bind(this)} addDayData={this.addDayData.bind(this)}className="popup" /> : null}
+
+                    {this.state.showPopUp ?
+                        <InputComp dayClicked={this.state.dayClicked} closePopup={this.closePopup.bind(this)}
+                                   addDayData={this.addDayData.bind(this)} className="popup"/> : null}
                 </div>
                 <section className="calendarContainer">
                     <div className="calendarSection">{this.state.boxes}</div>

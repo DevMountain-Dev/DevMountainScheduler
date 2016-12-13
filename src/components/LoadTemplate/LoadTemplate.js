@@ -8,11 +8,16 @@ class LoadTemplate extends React.Component {
     constructor(props) {
         super(props);
         //get stuff from db
-        this.state = {templates: ["Web Immersive", "Web AH", "iOS Immersive"], template: "Web Immersive"};
+
+        this.state = {
+            templates: ["Web Immersive", "Web AH", "iOS Immersive"],
+            template: "Web Immersive",
+            calendars:["1","2","hi"]
+        };
     }
 
-    renderTemplates() {
-        return this.state.templates.map(template => {
+    renderOptions(arr) {
+        return arr.map(template => {
             return <option key={template} value={template}>{template}</option>;
         });
     }
@@ -23,8 +28,7 @@ class LoadTemplate extends React.Component {
             start: document.getElementById('start').value,
             end: document.getElementById('end').value,
             template: this.state.template,
-            gmail: document.getElementById('gmail').value,
-            pass: document.getElementById('pass').value
+            calendar:this.state.calendar
         };
 
         if (data.start && data.end && data.template && data.gmail && data.pass) {
@@ -33,10 +37,10 @@ class LoadTemplate extends React.Component {
 
     };
 
-    handleChange = () => {
-        let template = document.getElementById('templates').value;
+    handleChange = (key, val) => {
+        let temp = document.getElementById(key).value;
         this.setState({
-            template: template
+            [key]: val
         });
     };
 
@@ -54,15 +58,16 @@ class LoadTemplate extends React.Component {
                         <label htmlFor="templates" className="white-text">Templates</label>
                         <select className="form-control" ref="templates" id="templates"
                                 onChange={this.handleChange}>
-                            {this.renderTemplates()}
+                            {this.renderOptions(this.state.templates)}
                         </select>
                     </div>
-                    {/*<div >*/}
-                        {/*Gmail &nbsp;<input type="email"  className="form-control" id="gmail" placeholder="Gmail Account"/>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                        {/*Password &nbsp;<input type="password" className="form-control" id="pass" placeholder="Password"/>*/}
-                    {/*</div>*/}
+                    <div className="form-group">
+                        <label htmlFor="templates" className="white-text">Calendars</label>
+                        <select className="form-control" ref="calendars" id="calendars"
+                                onChange={this.handleChange}>
+                            {this.renderOptions(this.state.calendars)}
+                        </select>
+                    </div>
                     <button className="btn" onClick={this.sendToCalendar}>Send to Google Calendar</button>
                 </div>
             </div>

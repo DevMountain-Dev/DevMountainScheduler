@@ -1,12 +1,11 @@
 import React from 'react';
 import './InputComp.css';
 class InputComp extends React.Component {
-  constructor(props){
-    super(props)
-    this.state = {
-
+    constructor(props) {
+        super(props);
+        this.state = {}
     }
-  }
+
   handleClose(){
     this.props.closePopup()
   }
@@ -25,8 +24,5 @@ class InputComp extends React.Component {
       </div>
     )
   }
-
-
-
 }
 export default InputComp

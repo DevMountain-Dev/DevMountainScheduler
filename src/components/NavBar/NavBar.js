@@ -19,7 +19,6 @@ class NavBar extends React.Component {
                             Create Template
                         </Link>
                     </li>
-
                     <li>
                         <Link to="/Settings">
                             Settings
