@@ -6,17 +6,20 @@ import InputComp from '../InputComp/InputComp'
 class CreateTemplate extends React.Component {
     constructor(props) {
         super(props);
-        this.state          = {
+        this.state = {
             name: '',
             length: '',
             submitClicked: false,
             days: [],
             activities: [],
             showPopUp: false,
-            dayClicked: ''
+            dayClicked: '',
+            dayData: ''
 
 
         };
+        console.log(this.state)
+
         this.createTemplate = this.createTemplate.bind(this)
     }
 
@@ -45,9 +48,15 @@ class CreateTemplate extends React.Component {
         })
     }
 
+    // submitDayData(dataObj){
+    //   this.setState({
+    //
+    //   })
+    // }
+
 
     createTemplate() {
-        let boxes   = [];
+        let boxes      = [];
         let name       = document.getElementById('name').value;
         let length     = document.getElementById('length').value;
         let activities = new Array(length).fill([]);
@@ -85,6 +94,29 @@ class CreateTemplate extends React.Component {
         }
     }
 
+    addDayData(dayData) {
+        console.log(dayData)
+        // let temp = this.state.activities.slice();
+        // temp[dayData.day] = dayData.data;
+        // console.log(temp);
+        // this.state.boxes.forEach(function(val, i){
+        //   if(val.date === dayData.day){
+        //      val.props.activities.activities.push(dayData.data)
+        //   }
+        // })
+        // this.state.boxes.forEach(function(val){
+        //   val.props.date
+        // })
+
+        console.log(this.state.boxes);
+
+        // this.state.activities[dayData.day].id = dayData.day+1;
+
+        // this.setState({
+        //   activities: this.state.activities
+        // })
+    }
+
     render() {
 
         return (
@@ -96,9 +128,10 @@ class CreateTemplate extends React.Component {
                                              onKeyUp={this.handleEnter.bind(this)}
                     /></div>
                     <button onClick={this.handleClick.bind(this)}>Create</button>
+
                     {this.state.showPopUp ?
                         <InputComp dayClicked={this.state.dayClicked} closePopup={this.closePopup.bind(this)}
-                                   className="popup"/> : null}
+                                   addDayData={this.addDayData.bind(this)} className="popup"/> : null}
                 </div>
                 <section className="calendarContainer">
                     <div className="calendarSection">{this.state.boxes}</div>
