@@ -8,7 +8,7 @@ class DayCard extends React.Component {
         if (this.props.activities) {
             console.log('here');
             this.state = {
-                activities: this.props.activities.map(activity => (
+                activities: this.props.activities.activities.map(activity => (
                     <li key={activity.startTime}>{activity.activity} : {activity.startTime}-{activity.endTime}</li>))
             };
             console.log(this.state)
