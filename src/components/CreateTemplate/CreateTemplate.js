@@ -33,23 +33,14 @@ class CreateTemplate extends React.Component {
 
     handleClick() {
 
-        const theBoxes = [];
+        let theBoxes = [];
+        let name = document.getElementById('name').value;
+        let length = document.getElementById('length').value;
+        let activities = new Array(length).fill([]);
         this.setState({
-            name: document.getElementById('name').value,
-            length: document.getElementById('length').value,
-            activities: [[{
-                activity: "whatever",
-                startTime: 230,
-                endTime: 430
-            }, {
-                activity: "hi,",
-                startTime: 430,
-                endTime: 500
-            }, {
-                activity: "stuff",
-                startTime: 600,
-                endTime: 800
-            }]]
+            name,
+            length,
+            activities
         });
         for (let i = 0; i < this.state.length; i++) {
             theBoxes.push((
